@@ -21,14 +21,14 @@ def main():
     
     exportSheet.title = 'Exported Data'
     exportSheet['A1'] = 'Part'
-    exportSheet['A2'] = 'Quantity'
-    exportSheet['A3'] = 'Supplier Number'
-    exportSheet['A4'] = 'Price per Part'
-    exportSheet['A5'] = 'Lead Time'
-    exportSheet['A6'] = 'Quality Acceptance'
-    exportSheet['A7'] = 'On-Time Delivery'
-    exportSheet['A8'] = 'Total Price'
-    exportSheet['A9'] = 'Impact Price'
+    exportSheet['B1'] = 'Quantity'
+    exportSheet['C1'] = 'Supplier Number'
+    exportSheet['D1'] = 'Price per Part'
+    exportSheet['E1'] = 'Lead Time'
+    exportSheet['F1'] = 'Quality Acceptance'
+    exportSheet['G1'] = 'On-Time Delivery'
+    exportSheet['H1'] = 'Total Price'
+    exportSheet['I1'] = 'Impact Price'
 
     totSum = 0 #totalPrice
     bestPrices = []
@@ -55,7 +55,6 @@ def main():
     for i in range(2, 20):
         partName = sheet['A'+str(i)]
         qt = sheet['B'+str(i)]
-        rowLetter = chr(i+96)
 
         s1_cpp = sheet['D'+str(i)]
         s1_lt = sheet['F'+str(i)]
@@ -78,8 +77,8 @@ def main():
         if (s1_ic < s2_ic):
             if (s1_ic < s3_ic):
                 bestPrices.append(qt.value*s1_cpp.value)
-                exportSheet[rowLetter + '1'] = partName.value
-                exportSheet[rowLetter + '2'] = qt.value
+                exportSheet['A' + '1'] = partName.value
+                exportSheet['A' + '2'] = qt.value
                 exportSheet[rowLetter + '3'] = 'Supplier 1'
                 exportSheet[rowLetter + '4'] = s1_cpp.value
                 exportSheet[rowLetter + '5'] = s1_lt.value
@@ -133,3 +132,47 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
