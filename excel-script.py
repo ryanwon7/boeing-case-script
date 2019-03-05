@@ -12,7 +12,9 @@ def as_currency(amount):
         return '-${:,.2f}'.format(-amount)
 
 def main():
-    os.chdir('C:/Users/ryanwon7/Desktop/boeing-case-script/')
+    #os.chdir('C:/Users/ryanwon7/Desktop/boeing-case-script/')
+    os.chdir('C:/Users/Ryan/Desktop/boeing-case-script/')
+
     importData = openpyxl.load_workbook('suppliers.xlsx')
     exportData = openpyxl.Workbook()
 
@@ -60,78 +62,100 @@ def main():
         s1_lt = sheet['F'+str(i)]
         s1_qa = sheet['H'+str(i)]
         s1_dv = sheet['G'+str(i)]
-        s1_ic = qt.value * s1_cpp.value * (1 + (1 - float(s1_dv.value)/100) * (stripNonNumeric(s1_lt.value))/4 + (1 - float(s1_qa.value)/100))
+        s1_ic = qt.value * s1_cpp.value * (1 + (1 - float(s1_dv.value)/100) * (stripNonNumeric(s1_lt.value)) + (1 - float(s1_qa.value)/100))
 
         s2_cpp = sheet['J'+str(i)]
         s2_lt = sheet['L'+str(i)]
         s2_qa = sheet['N'+str(i)]
         s2_dv = sheet['M'+str(i)]
-        s2_ic = qt.value * s2_cpp.value * (1 + (1 - float(s2_dv.value)/100) * (stripNonNumeric(s2_lt.value))/4 + (1 - float(s2_qa.value)/100))
+        s2_ic = qt.value * s2_cpp.value * (1 + (1 - float(s2_dv.value)/100) * (stripNonNumeric(s2_lt.value)) + (1 - float(s2_qa.value)/100))
         
         s3_cpp = sheet['P'+str(i)]
         s3_lt = sheet['R'+str(i)]
         s3_qa = sheet['T'+str(i)]
         s3_dv = sheet['S'+str(i)]
-        s3_ic = qt.value * s3_cpp.value * (1 + (1 - float(s3_dv.value)/100) * (stripNonNumeric(s3_lt.value))/4 + (1 - float(s3_qa.value)/100))
+        s3_ic = qt.value * s3_cpp.value * (1 + (1 - float(s3_dv.value)/100) * (stripNonNumeric(s3_lt.value)) + (1 - float(s3_qa.value)/100))
 
         if (s1_ic < s2_ic):
             if (s1_ic < s3_ic):
                 bestPrices.append(qt.value*s1_cpp.value)
-                exportSheet['A' + '1'] = partName.value
-                exportSheet['A' + '2'] = qt.value
-                exportSheet[rowLetter + '3'] = 'Supplier 1'
-                exportSheet[rowLetter + '4'] = s1_cpp.value
-                exportSheet[rowLetter + '5'] = s1_lt.value
-                exportSheet[rowLetter + '6'] = s1_qa.value
-                exportSheet[rowLetter + '7'] = s1_dv.value
-                exportSheet[rowLetter + '8'] = qt.value*s1_cpp.value
-                exportSheet[rowLetter + '9'] = s1_ic
+                exportSheet['A' + str(i)] = partName.value
+                exportSheet['B' + str(i)] = qt.value
+                exportSheet['C' + str(i)] = 'Supplier 1'
+                exportSheet['D' + str(i)] = s1_cpp.value
+                exportSheet['E' + str(i)] = s1_lt.value
+                exportSheet['F' + str(i)] = s1_qa.value
+                exportSheet['G' + str(i)] = s1_dv.value
+                exportSheet['H' + str(i)] = qt.value*s1_cpp.value
+                exportSheet['I' + str(i)] = s1_ic
 
             else:
                 bestPrices.append(qt.value*s3_cpp.value)
-                exportSheet[rowLetter + '1'] = partName.value
-                exportSheet[rowLetter + '2'] = qt.value
-                exportSheet[rowLetter + '3'] = 'Supplier 3'
-                exportSheet[rowLetter + '4'] = s3_cpp.value
-                exportSheet[rowLetter + '5'] = s3_lt.value
-                exportSheet[rowLetter + '6'] = s3_qa.value
-                exportSheet[rowLetter + '7'] = s3_dv.value
-                exportSheet[rowLetter + '8'] = qt.value*s3_cpp.value
-                exportSheet[rowLetter + '9'] = s3_ic
+                exportSheet['A' + str(i)] = partName.value
+                exportSheet['B' + str(i)] = qt.value
+                exportSheet['C' + str(i)] = 'Supplier 3'
+                exportSheet['D' + str(i)] = s3_cpp.value
+                exportSheet['E' + str(i)] = s3_lt.value
+                exportSheet['F' + str(i)] = s3_qa.value
+                exportSheet['G' + str(i)] = s3_dv.value
+                exportSheet['H' + str(i)] = qt.value*s3_cpp.value
+                exportSheet['I' + str(i)] = s3_ic
         else:
             if (s2_ic < s3_ic):
                 bestPrices.append(qt.value*s2_cpp.value)
-                exportSheet[rowLetter + '1'] = partName.value
-                exportSheet[rowLetter + '2'] = qt.value
-                exportSheet[rowLetter + '3'] = 'Supplier 2'
-                exportSheet[rowLetter + '4'] = s2_cpp.value
-                exportSheet[rowLetter + '5'] = s2_lt.value
-                exportSheet[rowLetter + '6'] = s2_qa.value
-                exportSheet[rowLetter + '7'] = s2_dv.value
-                exportSheet[rowLetter + '8'] = qt.value*s2_cpp.value
-                exportSheet[rowLetter + '9'] = s2_ic
+                exportSheet['A' + str(i)] = partName.value
+                exportSheet['B' + str(i)] = qt.value
+                exportSheet['C' + str(i)] = 'Supplier 2'
+                exportSheet['D' + str(i)] = s2_cpp.value
+                exportSheet['E' + str(i)] = s2_lt.value
+                exportSheet['F' + str(i)] = s2_qa.value
+                exportSheet['G' + str(i)] = s2_dv.value
+                exportSheet['H' + str(i)] = qt.value*s2_cpp.value
+                exportSheet['I' + str(i)] = s2_ic
             else:
                 bestPrices.append(qt.value*s3_cpp.value)
-                exportSheet[rowLetter + '1'] = partName.value
-                exportSheet[rowLetter + '2'] = qt.value
-                exportSheet[rowLetter + '3'] = 'Supplier 3'
-                exportSheet[rowLetter + '4'] = s3_cpp.value
-                exportSheet[rowLetter + '5'] = s3_lt.value
-                exportSheet[rowLetter + '6'] = s3_qa.value
-                exportSheet[rowLetter + '7'] = s3_dv.value
-                exportSheet[rowLetter + '8'] = qt.value*s3_cpp.value
-                exportSheet[rowLetter + '9'] = s3_ic
-                
+                exportSheet['A' + str(i)] = partName.value
+                exportSheet['B' + str(i)] = qt.value
+                exportSheet['C' + str(i)] = 'Supplier 3'
+                exportSheet['D' + str(i)] = s3_cpp.value
+                exportSheet['E' + str(i)] = s3_lt.value
+                exportSheet['F' + str(i)] = s3_qa.value
+                exportSheet['G' + str(i)] = s3_dv.value
+                exportSheet['H' + str(i)] = qt.value*s3_cpp.value
+                exportSheet['I' + str(i)] = s3_ic
+
+    exportSheet['F20'] = '=AVERAGE(F2:F19)'      
+    exportSheet['G20'] = '=AVERAGE(G2:G19)'
+    exportSheet['H20'] = '=SUM(H2:H19)'
+    exportSheet['I20'] = '=SUM(I2:I19)'
+    
+    for cellObjects in exportSheet['H2:I20']:
+        for cell in cellObjects:
+            cell.number_format = '$#,###.00'
+    
+    exportData.save('scriptoutput_OTDQAFOCUS.xlsx')
 
     for i in range(len(bestPrices)):
         totSum = totSum + bestPrices[i]
-    print(as_currency(totSum))
-
-    exportData.save('scriptoutput2.xlsx')
-                
+    print(as_currency(totSum))            
 
 if __name__ == "__main__":
     main()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
