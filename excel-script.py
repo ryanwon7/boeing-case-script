@@ -12,8 +12,8 @@ def as_currency(amount):
         return '-${:,.2f}'.format(-amount)
 
 def main():
-    #os.chdir('C:/Users/ryanwon7/Desktop/boeing-case-script/')
-    os.chdir('C:/Users/Ryan/Desktop/boeing-case-script/')
+    currentDirectory = os.getcwd()
+    os.chdir(currentDirectory)
 
     importData = openpyxl.load_workbook('suppliers.xlsx')
     exportData = openpyxl.Workbook()
@@ -133,11 +133,11 @@ def main():
         for cell in cellObjects:
             cell.number_format = '$#,###.00'
     
-    exportData.save('scriptoutput_OTDQAFOCUS.xlsx')
+    exportData.save(currentDirectory + '/outputs/test.xlsx')
 
     for i in range(len(bestPrices)):
         totSum = totSum + bestPrices[i]
-    print(as_currency(totSum))            
+    print("Total Price: " + as_currency(totSum))            
 
 if __name__ == "__main__":
     main()
