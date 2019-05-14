@@ -1,10 +1,12 @@
 <h1> Boeing Case Competition Python Excel Script </h1>
 This project is a small python script written by Ryan Won for the 2019 Drexel University Boeing Case Competition.
 
-<p><h3>Installation and Run<h3><p>
+<p><h3>Installation and Run</h3><p>
 This script was written and tested in Python 2.7.15. Compatability for older versions of Python 2.7 or other versions of Python untested.
 
-This script requires the python os and openpyxl modules. The openpyxl module requires the pip package manager to be installed, and pip should come shipped with Python 2.7 on versons 2.7.9+. 
+This script requires the python os and openpyxl modules. The openpyxl module requires the pip package manager to be installed, and pip should come shipped with Python 2.7 on versons 2.7.9+.
+
+To run in command line run "python excel-script.py", assuming python is the identifier to run Python 2.7.
 
 <p><h3>Purpose</h3>
 One of the provided issues for the Boeing Case Competition is to reduce the overall cost of building the Chinook aircraft that Boeing produces. To do so, competitiors are provided with a list of suppliers for all the parts of the aircraft; this is listed in the repository files as "suppliers.xslx". In this spreadsheet, three different supplier options, all with differing price per part, lead time, quality acceptance %, and on-time delivery %, are listed for the 20+ general parts that the Chinook is composed of. This script is written to analyze each supplier and their respective factors and determine which supplier Boeing should order from in order to assemble the most cost effective aircraft.
